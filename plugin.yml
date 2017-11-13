@@ -1,0 +1,28 @@
+name: ToolLeveling
+version: 1.0
+main: de.longcity.toolleveling.ToolLevelingPlugin
+commands:
+  toolleveling:
+    usage: /<command> help
+    aliases: [tl,toollevel]
+    description: Main-Befehl
+permissions:
+  toolleveling.enable:
+    default: true
+  toolleveling.stats:
+    default: true
+  toolleveling.stats.clear:
+    default: true
+  toolleveling.stats.modify:
+    default: op
+  toolleveling.use:
+    default: true
+    children:
+      toolleveling.enable: true
+      toolleveling.stats: true
+      toolleveling.stats.clear: true
+  toollevel.admin:
+    default: op
+    children:
+      toolleveling.use: true
+      toolleveling.stats.modify: true
