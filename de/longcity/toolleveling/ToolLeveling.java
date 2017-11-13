@@ -106,15 +106,16 @@ public final class ToolLeveling {
 		if(old_score + score >= getNextLevelScore(stats)) {
 			stats[2] = old_score + score - getNextLevelScore(stats);
 			stats[1]++;
-			ItemMeta m = i.getItemMeta();
 			Enchantment e = getNextEnchant(stats[1], stats[0]);
-			if(e == null) e = Enchantment.DURABILITY;
-			if(m.hasEnchant(e)) {
-				m.addEnchant(e, m.getEnchantLevel(e)+1, true);
-			} else {
-				m.addEnchant(e, 1, true);
+			if(e != null) {
+				ItemMeta m = i.getItemMeta();
+				if(m.hasEnchant(e)) {
+					m.addEnchant(e, m.getEnchantLevel(e)+1, true);
+				} else {
+					m.addEnchant(e, 1, true);
+				}
+				i.setItemMeta(m);
 			}
-			i.setItemMeta(m);
 			setStats(i, stats);
 			return 1;
 		} else {
@@ -180,6 +181,20 @@ public final class ToolLeveling {
 			case 19:return Enchantment.DURABILITY;// Unbreaking6
 			case 20:return Enchantment.MENDING;   // Mending
 			default:return Enchantment.DIG_SPEED;
+			}
+		case 3: // Axt
+			switch (level) {
+			case 1:return Enchantment.DURABILITY;  // Unbreaking
+			case 2:return Enchantment.DIG_SPEED;   // Efizienz
+			case 3:return Enchantment.DIG_SPEED;   // Effizienz2
+			case 4:return Enchantment.DURABILITY;  // Unbreaking2
+			case 5:return Enchantment.DAMAGE_ALL;  // Sharpness
+			case 6:return Enchantment.DURABILITY;  // Unbreaking3
+			case 7:return Enchantment.DIG_SPEED;   // Effizienz3
+			case 8:return Enchantment.DIG_SPEED;   // Effizienz4
+			case 9:return Enchantment.DURABILITY;  // Unbreaking4
+			case 10:return Enchantment.DAMAGE_ALL; // Sharpness2
+			default:return null;
 			}
 		case 4: // Schaufel
 			switch (level) {
